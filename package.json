@@ -10,12 +10,15 @@
 		"scrape-all": "node scripts/scrapeAll.js",
 		"process-data": "node scripts/processData.js",
 		"embed-data": "node scripts/embedData.js",
-		"query-test": "node scripts/queryTest.js"
+		"query-test": "node scripts/queryTest.js",
+		"test-connection": "node scripts/testConnection.js",
+		"insert-one": "node scripts/insertOne.js"
 	},
 	"author": "soumya talwar",
 	"license": "ISC",
 	"dependencies": {
 		"@google/genai": "^1.47.0",
+		"@supabase/supabase-js": "^2.100.1",
 		"cheerio": "^1.2.0",
 		"dotenv": "^17.3.1",
 		"puppeteer": "^24.40.0"
