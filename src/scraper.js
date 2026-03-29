@@ -1,19 +1,38 @@
-import axios from "axios";
+import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 
-export async function scrapeFic(url) {
-	try {
-		const { data } = await axios.get(url + "?view_adult=true", {
-			headers: {
-				"User-Agent":
-					"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-				"Accept-Language": "en-US,en;q=0.9",
-				Accept:
-					"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-				Connection: "keep-alive",
-			},
+let browser;
+
+async function getBrowser() {
+	if (!browser) {
+		browser = await puppeteer.launch({
+			headless: true,
+			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		});
-		const $ = cheerio.load(data);
+	}
+	return browser;
+}
+
+export async function scrapeFic(url) {
+	const finalUrl = url + "?view_adult=true";
+	try {
+		const browser = await getBrowser();
+		const page = await browser.newPage();
+		await page.setUserAgent(
+			"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+		);
+		await page.goto(finalUrl, {
+			waitUntil: "domcontentloaded",
+			timeout: 60000,
+		});
+		await page.waitForSelector("dl.meta", { timeout: 10000 });
+		const html = await page.content();
+		await page.close();
+		const $ = cheerio.load(html);
+		if ($("dl.meta").length === 0) {
+			console.log("Blocked or invalid:", url);
+			return null;
+		}
 		const title = $("h2.title").text().trim() || $("h2.heading").text().trim();
 		const authors = [];
 		$("a[rel='author']").each((_, el) => {
@@ -44,9 +63,9 @@ export async function scrapeFic(url) {
 		let completed = false;
 		if (chaptersText.includes("/")) {
 			const [curr, tot] = chaptersText.split("/");
-			current = parseInt(curr);
+			current = parseInt(curr) || 0;
 			total = tot === "?" ? null : parseInt(tot);
-			completed = current === total;
+			completed = total !== null && current === total;
 		}
 		return {
 			title,
@@ -65,7 +84,7 @@ export async function scrapeFic(url) {
 			url,
 		};
 	} catch (err) {
-		console.error("Scrape failed:", err.message);
+		console.error("❌ Scrape failed:", url, err.message);
 		return null;
 	}
 }
