@@ -1,5 +1,6 @@
 import { supabase } from "../src/supabaseClient.js";
 import { GoogleGenAI } from "@google/genai";
+import { rankFics } from "../src/ranker.js";
 import "dotenv/config";
 
 const ai = new GoogleGenAI({
@@ -7,7 +8,7 @@ const ai = new GoogleGenAI({
 });
 
 async function run() {
-	const query = "angsty slow burn taegi long fic";
+	const query = "taegi science fiction fic with angst";
 	const res = await ai.models.embedContent({
 		model: "gemini-embedding-001",
 		contents: [query],
@@ -16,13 +17,14 @@ async function run() {
 	const { data, error } = await supabase.rpc("match_fics", {
 		query_embedding: embedding,
 		match_threshold: 0.5,
-		match_count: 5,
+		match_count: 20,
 	});
 	if (error) {
 		console.error(error);
 	} else {
-		console.log("\nTop Matches:");
-		console.log(data);
+		const ranked = rankFics(data, query);
+		console.log("\nFinal Top Picks:");
+		console.log(ranked.slice(0, 3));
 	}
 }
 
