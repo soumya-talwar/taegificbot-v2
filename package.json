@@ -9,7 +9,8 @@
 		"scrape-test": "node scripts/scrapeTest.js",
 		"scrape-all": "node scripts/scrapeAll.js",
 		"process-data": "node scripts/processData.js",
-		"embed-data": "node scripts/embedData.js"
+		"embed-data": "node scripts/embedData.js",
+		"query-test": "node scripts/queryTest.js"
 	},
 	"author": "soumya talwar",
 	"license": "ISC",
