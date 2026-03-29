@@ -12,7 +12,7 @@
 		"embed-data": "node scripts/embedData.js",
 		"query-test": "node scripts/queryTest.js",
 		"test-connection": "node scripts/testConnection.js",
-		"insert-one": "node scripts/insertOne.js"
+		"populate-database": "node scripts/populateDatabase.js"
 	},
 	"author": "soumya talwar",
 	"license": "ISC",
