@@ -7,7 +7,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"scrape-test": "node scripts/scrapeTest.js",
-		"scrape-all": "node scripts/scrapeAll.js"
+		"scrape-all": "node scripts/scrapeAll.js",
+		"process-data": "node scripts/processData.js"
 	},
 	"author": "soumya talwar",
 	"license": "ISC",
