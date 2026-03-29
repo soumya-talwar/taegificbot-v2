@@ -10,9 +10,10 @@
 		"scrape-all": "node scripts/scrapeAll.js",
 		"process-data": "node scripts/processData.js",
 		"embed-data": "node scripts/embedData.js",
-		"query-test": "node scripts/queryTest.js",
+		"query-local": "node scripts/queryLocal.js",
 		"test-connection": "node scripts/testConnection.js",
-		"populate-database": "node scripts/populateDatabase.js"
+		"populate-database": "node scripts/populateDatabase.js",
+		"query-database": "node scripts/queryDatabase.js"
 	},
 	"author": "soumya talwar",
 	"license": "ISC",
