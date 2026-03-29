@@ -67,6 +67,7 @@ export async function scrapeFic(url) {
 			total = tot === "?" ? null : parseInt(tot);
 			completed = total !== null && current === total;
 		}
+		const summary = $(".summary .userstuff").text().replace(/\s+/g, " ").trim();
 		return {
 			title,
 			authors,
@@ -81,10 +82,11 @@ export async function scrapeFic(url) {
 				total,
 			},
 			completed,
+			summary,
 			url,
 		};
 	} catch (err) {
-		console.error("❌ Scrape failed:", url, err.message);
+		console.error("Scrape failed:", url, err.message);
 		return null;
 	}
 }
