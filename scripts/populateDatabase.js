@@ -1,5 +1,5 @@
 import fs from "fs";
-import { supabase } from "../src/supabaseClient.js";
+import { supabase } from "../src/database.js";
 
 const data = JSON.parse(fs.readFileSync("data/fics_with_embeddings.json"));
 

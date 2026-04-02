@@ -1,4 +1,4 @@
-import { supabase } from "../src/supabaseClient.js";
+import { supabase } from "../src/database.js";
 import { GoogleGenAI } from "@google/genai";
 import { rankFics } from "../src/ranker.js";
 import "dotenv/config";
