@@ -1,4 +1,5 @@
-# Taegificbot v2.0 — BTS Fanfiction Recommendation API
+# TAEGIFICBOT v2.0
+### BTS Fanfiction Recommendation API
 
 A semantic search API for discovering BTS (taegi) fanfiction using embeddings, vector similarity, and custom ranking.
 
