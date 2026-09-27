@@ -57,18 +57,6 @@ GET /api/recommend?query=slow burn enemies to lovers taegi
 ]
 ```
 
-## Try it yourself
-
-You can test the API using:
-
-- Browser
-- Postman / Insomnia
-- curl:
-
-```
-curl "https://taegificbot.vercel.app/api/recommend?query=angsty slow burn taegi"
-```
-
 ## Built with
 
 - **Node.js**
