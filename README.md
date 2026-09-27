@@ -57,7 +57,7 @@ GET /api/recommend?query=slow burn enemies to lovers taegi
 ]
 ```
 
-## Try It Yourself
+## Try it yourself
 
 You can test the API using:
 
@@ -71,8 +71,8 @@ curl "https://taegificbot.vercel.app/api/recommend?query=angsty slow burn taegi"
 
 ## Built with
 
-- Node.js
-- Google Gemini Embeddings API
-- Supabase (PostgreSQL + pgvector)
-- Puppeteer + Cheerio
-- Vercel
+- **Node.js**
+- **Google Gemini Embeddings API**
+- **Supabase (PostgreSQL + pgvector)**
+- **Puppeteer + Cheerio**
+- **Vercel**
